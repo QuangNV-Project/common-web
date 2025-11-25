@@ -9,8 +9,8 @@
     <artifactId>common-web</artifactId>
     <version>1.0.1-SNAPSHOT</version>
     <packaging>jar</packaging>
-    <name>Common web Module</name>
-    <description>Shared utilities for common web</description>
+    <name>Common Web Utilities</name>
+    <description>Common Web utilities for all microservices</description>
 
     <properties>
         <java.version>21</java.version>
