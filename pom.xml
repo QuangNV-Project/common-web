@@ -7,7 +7,7 @@
 
     <groupId>com.quangnv.service</groupId>
     <artifactId>common-web</artifactId>
-    <version>1.0.1-SNAPSHOT</version>
+    <version>1.0.2-SNAPSHOT</version>
     <packaging>jar</packaging>
     <name>Common web Module</name>
     <description>Shared utilities for common web</description>
@@ -17,7 +17,7 @@
         <spring-boot.version>3.5.0</spring-boot.version>
         <spring-cloud.version>2025.0.0</spring-cloud.version>
         <lombok.version>1.18.30</lombok.version>
-        <utility-shared.version>1.0.9-SNAPSHOT</utility-shared.version>
+        <utility-shared.version>1.0.10-SNAPSHOT</utility-shared.version>
     </properties>
 
     <distributionManagement>
