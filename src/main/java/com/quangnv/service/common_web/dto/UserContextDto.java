@@ -1,5 +1,6 @@
 package com.quangnv.service.common_web.dto;
 
+import com.quangnv.service.utility_shared.constant.RoleValue;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -13,5 +14,17 @@ import lombok.experimental.FieldDefaults;
 public class UserContextDto {
     String userId;
     String userName;
-    String userRole;
+    RoleValue userRole;
+
+    public static UserContextDto fromHeaders(
+            String userId,
+            String userName,
+            String roleHeader
+    ) {
+        return new UserContextDto(
+                userId,
+                userName,
+                RoleValue.fromAuthority(roleHeader)
+        );
+    }
 }

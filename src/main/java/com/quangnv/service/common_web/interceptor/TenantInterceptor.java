@@ -3,16 +3,31 @@ package com.quangnv.service.common_web.interceptor;
 import com.quangnv.service.common_web.context.TenantContext;
 import com.quangnv.service.common_web.dto.TenantContextDto;
 import com.quangnv.service.utility_shared.constant.HeaderConstants;
+import jakarta.annotation.PostConstruct;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.validation.ValidationException;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
 
 @Slf4j
+@ConditionalOnProperty(
+        prefix = "tenant",
+        name = "enabled",
+        havingValue = "true",
+        matchIfMissing = false
+)
 @Component
+@RequiredArgsConstructor
 public class TenantInterceptor implements HandlerInterceptor {
+    @PostConstruct
+    void init() {
+        log.info("TenantInterceptor ENABLED");
+    }
+
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) {
