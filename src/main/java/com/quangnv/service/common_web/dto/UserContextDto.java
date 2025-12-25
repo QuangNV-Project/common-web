@@ -7,6 +7,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.experimental.FieldDefaults;
 
+import java.util.List;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -14,17 +16,17 @@ import lombok.experimental.FieldDefaults;
 public class UserContextDto {
     String userId;
     String userName;
-    RoleValue userRole;
+    List<RoleValue> userRoles;
 
     public static UserContextDto fromHeaders(
             String userId,
             String userName,
-            String roleHeader
+            List<String> roleHeaders
     ) {
         return new UserContextDto(
                 userId,
                 userName,
-                RoleValue.fromAuthority(roleHeader)
+                roleHeaders.stream().map(RoleValue::fromAuthority).toList()
         );
     }
 }

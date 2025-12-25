@@ -1,5 +1,6 @@
 package com.quangnv.service.common_web.filter;
 
+import com.quangnv.service.common_web.dto.UserPrincipal;
 import com.quangnv.service.utility_shared.util.JwtUtil;
 import io.jsonwebtoken.Claims;
 import jakarta.servlet.FilterChain;
@@ -49,15 +50,22 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
             Claims claims = jwtUtil.parseToken(token);
 
             Long userId = claims.get("userId", Long.class);
+            String userName = claims.get("userName", String.class);
             List<String> roles = claims.get("roles", List.class);
 
             List<SimpleGrantedAuthority> authorities = roles.stream()
                     .map(SimpleGrantedAuthority::new)
                     .toList();
 
+            UserPrincipal principal = new UserPrincipal(
+                    userId,
+                    userName,
+                    authorities
+            );
+
             UsernamePasswordAuthenticationToken authentication =
                     new UsernamePasswordAuthenticationToken(
-                            userId,
+                            principal,
                             null,
                             authorities
                     );
