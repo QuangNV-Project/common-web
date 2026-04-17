@@ -14,12 +14,6 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
 
 @Slf4j
-@ConditionalOnProperty(
-        prefix = "tenant",
-        name = "enabled",
-        havingValue = "true",
-        matchIfMissing = false
-)
 @Component
 @RequiredArgsConstructor
 public class TenantInterceptor implements HandlerInterceptor {
